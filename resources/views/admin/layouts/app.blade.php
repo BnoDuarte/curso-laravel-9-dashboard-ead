@@ -12,7 +12,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
     </style>
-    <link rel="stylesheet" href="{{ url('styles/custom.css') }}">
+    <link rel="stylesheet" href="{{ url('css/custom.css') }}">
 </head>
 
 <body>
