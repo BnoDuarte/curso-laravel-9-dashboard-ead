@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class ReplySupport extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 
+        'user_id', 
+        'admin_id', 
+        'support_id', 
         'description', 
-        'image', 
-        'available'
     ];
-
-    public function modules()
-    {
-        return $this->hasMany(Module::class);
-    }
 }
