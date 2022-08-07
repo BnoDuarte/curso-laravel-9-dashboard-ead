@@ -10,6 +10,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.home');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
 });
 
 
