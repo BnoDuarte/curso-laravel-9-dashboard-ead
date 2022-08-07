@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\UserRepositoryInterface;
-use phpDocumentor\Reflection\Types\Null_;
 
 class UserService
 {
@@ -16,7 +15,9 @@ class UserService
 
     public function getAll(string $filter = ''): array
     {
-        return $this->repository->getAll($filter);
+        $users = $this->repository->getAll($filter);
+
+        return convertItemsOfArrayToObject($users);
     }
 
     public function findById(string $id): object|null
