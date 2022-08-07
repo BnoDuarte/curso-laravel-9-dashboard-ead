@@ -36,4 +36,18 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
     }
+
+    public function edit($id)
+    {
+        if (!$user = $this->service->findById($id)) {
+            return redirect()->back();
+        }
+            
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        dd($request->all());
+    }
 }
