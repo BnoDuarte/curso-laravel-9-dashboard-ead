@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -32,7 +34,10 @@ class UserController extends Controller
 
     public function store(UserStoreRequest $request) 
     {
-        $this->service->create($request->validated());
+        $data = $request->validated();
+        $data['password'] = bcrypt($data['password']);
+        
+        $this->service->create($data);
 
         return redirect()->route('users.index');
     }
@@ -46,8 +51,33 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        dd($request->all());
+        $data = $request->only(['name', 'email']);
+
+        if ($request->password) {
+            $data['password'] = bcrypt($data['password']);
+        }
+        
+        if (!$this->service->update($id, $data)) {
+            return back();
+        }
+
+        return redirect()->route('users.index');
+    }
+
+    public function show($id)
+    {
+        if (!$user = $this->service->findById($id))
+            return back();
+
+        return view('admin.users.show', compact('user'));
+    }
+
+    public function destroy($id)
+    {
+        $this->service->delete($id);
+
+        return redirect()->route('users.index');
     }
 }

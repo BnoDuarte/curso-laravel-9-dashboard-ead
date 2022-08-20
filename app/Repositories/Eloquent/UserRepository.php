@@ -43,9 +43,9 @@ class UserRepository implements UserRepositoryInterface
         if (!$user = $this->findById($id)) {
             return null;
         }
-
+        
         $user->update($data);
-
+        
         return $user;
     }
 

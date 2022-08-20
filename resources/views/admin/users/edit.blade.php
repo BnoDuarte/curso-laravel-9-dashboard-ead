@@ -4,7 +4,7 @@
 
 @section('content')
 <h1 class="w-full text-3xl text-black pb-6">
-    Editar Usuário {{ $user->name }}
+    Editar Usuário - {{ $user->name }}
 </h1>
 <div class="flex flex-wrap">
     <div class="w-full my-6 pr-0 lg:pr-2">
