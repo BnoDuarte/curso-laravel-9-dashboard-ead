@@ -16,6 +16,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::delete('/users/{id}', [UserController::class , 'destroy'])->name('users.destroy');
+    Route::put('/users/{id}/update-image', [UserController::class, 'uploadFile'])->name('users.update.image');
+    Route::get('/users/{id}/image', [UserController::class, 'changeImage'])->name('users.change.image');
 });
 
 
