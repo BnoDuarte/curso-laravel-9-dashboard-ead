@@ -3,11 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     AdminController,
+    CourseController,
     UserController
 };
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
+
+    /**
+     * Routes Courses
+     */
+    Route::resource('/courses', CourseController::class);
 
     /**
      * Routes Admin
