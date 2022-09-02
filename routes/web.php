@@ -7,8 +7,18 @@ use App\Http\Controllers\Admin\{
 };
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.home');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
 
+    /**
+     * Routes Admin
+     */
+    Route::resource('/admins', AdminController::class);
+    Route::put('/admins/{id}/update-image', [AdminController::class, 'uploadFile'])->name('admins.update.image');
+    Route::get('/admins/{id}/image', [AdminController::class, 'changeImage'])->name('admins.change.image');
+
+    /**
+     * Routes Users
+     */
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
